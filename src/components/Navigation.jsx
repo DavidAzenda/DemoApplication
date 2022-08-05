@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Bulma from '@vizuaalog/bulmajs';
+
 
 function Navigation(){
 
