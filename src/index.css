@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.todoitem {
+  cursor: pointer;
+}
+.strike {
+  background-color: #198754;
+  /* text-decoration: line-through;
+  list-group-item-
+  success; */
+}
+
+.disabled{
+  pointer-events: none;
+}
