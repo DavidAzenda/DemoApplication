@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 
 function Navigation(){
@@ -17,28 +17,28 @@ function Navigation(){
                 </button>
                 
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className = "nav-item">
-                        <NavLink className="nav-link" to="/">
+                        <Link className="nav-link" to="/">
                             Counter
-                        </NavLink>
+                        </Link>
                         </li>
                         <li className = "nav-item">
-                        <NavLink className="nav-link" to = "/Calculator">
+                        <Link className="nav-link" to = "/calculator">
                             Calculator
-                        </NavLink>
+                        </Link>
                         </li>
                         <li className = "nav-item">
-                        <NavLink className="nav-link" to = "/todo">
+                        <Link className="nav-link" to = "/todo">
                             ToDo
-                        </NavLink>
+                        </Link>
                         </li>
-                        <li className = "nav-item end">
+                        {/* <li className = "nav-item end">
                             <button class="btn btn-outline-success" type="submit">Sign Up</button>
                         </li>
                         <li className = "nav-item end">
                             <button class="btn btn-outline-success" type="submit">Log In</button>   
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                

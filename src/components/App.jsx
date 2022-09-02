@@ -35,7 +35,8 @@ function App() {
   }
 
   return (
-    <div class="container my-5">
+    
+      <div class="container my-5">
       <div class = "justify-center">
         <h1 class="display-1 ">
           {target}
@@ -71,6 +72,8 @@ function App() {
       </div>
 
     </div>
+  
+    
   );
 }
 

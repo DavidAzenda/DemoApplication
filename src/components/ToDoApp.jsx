@@ -1,8 +1,9 @@
-import{useState} from 'react';
+import{useState,useEffect} from 'react';
 import data from './data.json';
 import ToDoInput from './ToDoInput';
 import ToDoList from './ToDoList';
 
+const LOCALSTORAGE_TASKS_KEY = 'todolist-tasks'
 
 function ToDoApp() {
 
@@ -11,8 +12,10 @@ function ToDoApp() {
   const[uncompleted,setUncompleted]= useState([]);
   const[tableToggle, setTableToggle] = useState(false);
   const[isEmpty, setIsEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
 
   const toggle = (id) =>{
+    console.log(id)
     let item = toDoList?.map(task =>{
       return task.id === Number(id)?{...task,complete: !task.complete}:{...task};
     });
@@ -58,6 +61,30 @@ function ToDoApp() {
     setToDoList(copy);
   }
 
+  // const handleDelete = (id) => {
+  //   let copy = toDoList;  
+  //   console.log(id);
+  //   //console.log(copy);
+  //   copy = copy.filter((task)=> {
+  //     return task.id !== task.id
+  //   })
+  //   console.log(copy)
+  //   setToDoList(copy);
+  // }
+
+  useEffect(() => {
+    if(!isLoading) {
+      localStorage.setItem(LOCALSTORAGE_TASKS_KEY, JSON.stringify(toDoList))
+    }
+  }, [toDoList])
+
+ 
+  // useEffect(() => {
+  //   const tasksLocal = localStorage.getItem(LOCALSTORAGE_TASKS_KEY)
+  //   tasksLocal && setToDoList(JSON.parse(tasksLocal))
+  //   setIsLoading(false)
+  // }, [])
+
   
 
   return(
@@ -65,7 +92,7 @@ function ToDoApp() {
       <div className='row py-2 row-cols-2'>
         <div className='col d-grid'>
           <h1>
-            ToDo
+            {tableToggle? "Completed Tasks": "All Tasks"}
           </h1>
         </div>
         <div className="col text-end">
@@ -78,8 +105,32 @@ function ToDoApp() {
       </div>
       
       <ToDoInput addTask = {addTask}/>
+      {/* {!tableToggle && <ToDoList id="todooutstanding" toDoList = {toDoList} toggle = {toggle} handleClear = {handleClear}  handleCompleted = {handleCompleted}  handleUncompleted = {handleUncompleted} handleDelete = {handleDelete}/>}
+      {tableToggle && <ToDoList id="todooutcomplete" toDoList = {completed} toggle = {toggle} handleClear = {handleClear}  handleCompleted = {handleCompleted}  handleUncompleted = {handleUncompleted} handleDelete = {handleDelete}/>} */}
       {!tableToggle && <ToDoList id="todooutstanding" toDoList = {toDoList} toggle = {toggle} handleClear = {handleClear}  handleCompleted = {handleCompleted}  handleUncompleted = {handleUncompleted}/>}
       {tableToggle && <ToDoList id="todooutcomplete" toDoList = {completed} toggle = {toggle} handleClear = {handleClear}  handleCompleted = {handleCompleted}  handleUncompleted = {handleUncompleted}/>}
+      {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
+
+      
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 

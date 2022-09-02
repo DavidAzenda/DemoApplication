@@ -1,13 +1,13 @@
 import React from "react";
 import ToDoItem from "./ToDoItem";
 
-function ToDoList({toDoList,toggle,handleCompleted, handleClear, handleUncompleted}){
+function ToDoList({toDoList,toggle,handleCompleted, handleClear, handleUncompleted, handleDelete}){
 
     return(
         <div class = "py-3 list-group">
             {toDoList?.map(todoitem => {
                 return (
-                    <ToDoItem todoitem = {todoitem} toggle = {toggle} handleClear = {handleClear} handleCompleted = {handleCompleted} handleUncompleted = {handleUncompleted}/>
+                    <ToDoItem todoitem = {todoitem} toggle = {toggle} handleClear = {handleClear} handleCompleted = {handleCompleted} handleUncompleted = {handleUncompleted} handleDelete = {handleDelete}/>
                 )
             })}
             {/* <div className="row py-3 row-cols-3">
